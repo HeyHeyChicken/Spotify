@@ -1,0 +1,26 @@
+{
+  "name": "nova-spotify",
+  "version": "1.0.0",
+  "description": "abc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeyHeyChicken/NOVA-Spotify.git"
+  },
+  "author": "Antoine Duval",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HeyHeyChicken/NOVA-Spotify/issues"
+  },
+  "homepage": "https://github.com/HeyHeyChicken/NOVA-Spotify#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "path": "^0.12.7",
+    "querystring": "^0.2.0"
+  }
+}

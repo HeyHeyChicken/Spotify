@@ -1,0 +1,116 @@
+html{
+  >body{
+    .spotify{
+      background-color: #333;
+      height: 148px;
+      border-radius: 0.25rem;
+      padding: 15px 15px 15px 118px;
+      position: relative;
+      margin-left: 15px;
+
+      > .wallpaper{
+        overflow: hidden;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+
+        > div{
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          height: 100%;
+          width: 100%;
+          filter: blur(10px);
+          background-size: cover;
+          background-position: center;
+          transition: background-image 0.25s ease;
+          transition-delay: 0s;
+          opacity: 0.5;
+        }
+      }
+
+      > .img{
+        height: 118px;
+        width: 118px;
+        position: absolute;
+        background-color: #333;
+        top: 50%;
+        left: -15px;
+        transform: translateY(-50%);
+        border-radius: 0.25rem;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.25s ease;
+        transition-delay: 0s;
+      }
+
+      > .controls{
+        position: relative;
+        color: white;
+        text-align: center;
+
+        > button{
+          height: 60px;
+          width: 60px;
+          border: none;
+          border-radius: 50%;
+          background: white;
+          color: black;
+          font-size: 30px;
+          margin-top: 15px;
+
+          &:focus{
+            outline: none;
+          }
+        }
+
+        > .name, > .artist{
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        > .name{
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        > .artist{
+          opacity: 0.8;
+          margin-bottom: 13px;
+        }
+
+        > table{
+          margin-left: auto;
+          margin-right: auto;
+
+          > tbody{
+            > tr{
+              > td{
+                > button{
+                  height: 50px;
+                  width: 50px;
+                  border-radius: 50%;
+                  border: none;
+
+                  &:focus{
+                    outline: none;
+                  }
+                }
+
+                &:first-child, &:last-child{
+                  > button{
+                    color: white;
+                    background-color: transparent;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

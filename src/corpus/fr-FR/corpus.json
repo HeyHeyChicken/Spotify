@@ -1,0 +1,40 @@
+{
+  "name": "Amberdata",
+  "data": [
+    {
+      "intent": "Spotify.music.play",
+      "utterances": [
+        "Remets la musique",
+        "Remets de la musique",
+        "Mets de la musique",
+        "Mets la musique",
+        "Mets-moi de la musique",
+        "Joue-moi de la musique",
+        "Remets-moi de la musique",
+        "Rejoue moi de la musique"
+      ]
+    },
+    {
+      "intent": "Spotify.music.next",
+      "utterances": [
+        "Musique suivante",
+        "Mets la musique d'après"
+      ]
+    },
+    {
+      "intent": "Spotify.music.previous",
+      "utterances": [
+        "Musique précédente",
+        "Remets la musique d'avant"
+      ]
+    },
+    {
+      "intent": "Spotify.music.pause",
+      "utterances": [
+        "MPose",
+        "Pause",
+        "Stop"
+      ]
+    }
+  ]
+}
