@@ -125,7 +125,6 @@ class Spotify extends LIBRARIES.Skill {
       }
     }
     else{
-      SELF.Main.Log("A");
       const BODY = LIBRARIES.QueryString.stringify({
         "grant_type": "refresh_token",
         "refresh_token": this.Settings.RefreshToken,
@@ -148,14 +147,12 @@ class Spotify extends LIBRARIES.Skill {
 
       const req = LIBRARIES.HTTPS.request(OPTIONS, res => {
         res.on("data", d => {
-          SELF.Main.Log("B");
           result += d;
         })
         res.on("end", () => {
           result = JSON.parse(result);
-          SELF.Main.Log("C");
-          SELF.Main.Log(result);
           SELF.Settings.AccessToken = result.access_token;
+          SELF.Main.Log(result.access_token);
 
           const FILE_PATH = LIBRARIES.Path.join(__dirname, "/settings.json");
 
