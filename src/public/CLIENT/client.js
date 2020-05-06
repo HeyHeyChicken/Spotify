@@ -4,6 +4,8 @@ class Client {
 
         this.Main = _main;
 
+        _main.Log("GG", "red");
+
         // Sockets from client
         this.Main.IOServer.on("connection", function(socket){
             socket.on("get_spotify_token", function(){
