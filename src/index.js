@@ -52,6 +52,7 @@ class Spotify extends LIBRARIES.Skill {
 
   SetCode(_code){
     this.Settings.Code = _code
+    this.Main.Log(__dirname, "red");
     const FILE_PATH = LIBRARIES.Path.join(__dirname, "/settings.json");
 
     const CURRENT = JSON.parse(LIBRARIES.FS.readFileSync(FILE_PATH, "utf8"));

@@ -157,7 +157,6 @@ function InitSpotify(){
     // Ready
     SpotifyPlayer.addListener("ready", ({ device_id }) => {
         MAIN.Socket.emit("set_spotify_device", NAME);
-        console.log("ready", device_id);
     });
 
     // Not Ready
