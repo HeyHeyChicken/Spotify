@@ -135,6 +135,7 @@ function InitSpotify(){
 
     // Playback status updates
     SpotifyPlayer.addListener('player_state_changed', state => {
+        console.log("player_state_changed", state);
         SpotifyApp.$children[0].initialised = true;
         SpotifyApp.$children[0].playing = !state.paused;
         SpotifyApp.$children[0].img = state.track_window.current_track.album.images[0].url;
@@ -156,6 +157,7 @@ function InitSpotify(){
     // Ready
     SpotifyPlayer.addListener("ready", ({ device_id }) => {
         MAIN.Socket.emit("set_spotify_device", NAME);
+        console.log("ready", device_id);
     });
 
     // Not Ready
