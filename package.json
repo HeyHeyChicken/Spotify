@@ -1,11 +1,8 @@
 {
   "name": "nova-spotify",
   "version": "1.0.0",
-  "description": "abc",
+  "description": "This skill will allow your NOVA assistant to play you some Spotify music.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/HeyHeyChicken/NOVA-Spotify.git"
