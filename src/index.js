@@ -152,7 +152,6 @@ class Spotify extends LIBRARIES.Skill {
         res.on("end", () => {
           result = JSON.parse(result);
           SELF.Settings.AccessToken = result.access_token;
-          SELF.Main.Log(result.access_token);
 
           const FILE_PATH = LIBRARIES.Path.join(__dirname, "/settings.json");
 
@@ -212,41 +211,47 @@ class Spotify extends LIBRARIES.Skill {
     const SELF = this;
 
     SELF.GetDevices(function(_devices){
-      const DEVICE = _devices.find(x => x.name == _name);
+      if(_devices !== undefined){
 
-      const BODY = JSON.stringify({
-        "device_ids": [DEVICE.id]
-      });
+        const DEVICE = _devices.find(x => x.name == _name);
 
-      const OPTIONS = {
-        hostname: "api.spotify.com",
-        port: 443,
-        path: "/v1/me/player",
-        method: "PUT",
-        headers: {
-          "Authorization": "Bearer " + SELF.Settings.AccessToken
-        }
-      }
-
-      let result = "";
-
-      const req = LIBRARIES.HTTPS.request(OPTIONS, res => {
-        res.on("data", d => {
-          result += d;
-        })
-        res.on("end", () => {
-          if(res.statusCode === 204){
-            _socket.emit("spotify_ready_to_play");
-          }
+        const BODY = JSON.stringify({
+          "device_ids": [DEVICE.id]
         });
-      })
 
-      req.on("error", error => {
-        console.error(error);
-      })
+        const OPTIONS = {
+          hostname: "api.spotify.com",
+          port: 443,
+          path: "/v1/me/player",
+          method: "PUT",
+          headers: {
+            "Authorization": "Bearer " + SELF.Settings.AccessToken
+          }
+        }
 
-      req.write(BODY);
-      req.end();
+        let result = "";
+
+        const req = LIBRARIES.HTTPS.request(OPTIONS, res => {
+          res.on("data", d => {
+            result += d;
+          })
+          res.on("end", () => {
+            if(res.statusCode === 204){
+              _socket.emit("spotify_ready_to_play");
+            }
+          });
+        })
+
+        req.on("error", error => {
+          console.error(error);
+        })
+
+        req.write(BODY);
+        req.end();
+      }
+      else{
+        SELF.Main.Log("Spotify can't find any devices.", "red");
+      }
     });
   }
 }
