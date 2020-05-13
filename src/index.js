@@ -8,8 +8,8 @@ const LIBRARIES = {
 };
 
 class Spotify extends LIBRARIES.Skill {
-  constructor(_main, _settings) {
-    super(_main, _settings);
+  constructor(_main, _settings, _folder) {
+    super(_main, _settings, _folder);
     const SELF = this;
 
     this.Main.Manager.addAction("Spotify.music.pause", function(_intent, _socket){
@@ -52,11 +52,7 @@ class Spotify extends LIBRARIES.Skill {
 
   SetCode(_code){
     this.Settings.Code = _code
-    const FILE_PATH = LIBRARIES.Path.join(__dirname, "/settings.json");
-
-    const CURRENT = JSON.parse(LIBRARIES.FS.readFileSync(FILE_PATH, "utf8"));
-    CURRENT.Settings = this.Settings;
-    LIBRARIES.FS.writeFileSync(FILE_PATH, JSON.stringify(CURRENT), "utf8");
+    this.SaveSettings();
 
     this.GetTokensFromCode();
   }
@@ -94,12 +90,7 @@ class Spotify extends LIBRARIES.Skill {
         SELF.Settings.AccessToken = result.access_token;
         SELF.Settings.RefreshToken = result.refresh_token;
         SELF.Settings.Code = null;
-
-        const FILE_PATH = LIBRARIES.Path.join(__dirname, "/settings.json");
-
-        const CURRENT = JSON.parse(LIBRARIES.FS.readFileSync(FILE_PATH, "utf8"));
-        CURRENT.Settings = this.Settings;
-        LIBRARIES.FS.writeFileSync(FILE_PATH, JSON.stringify(CURRENT), "utf8");
+        SELF.SaveSettings();
       });
     })
 
@@ -152,12 +143,7 @@ class Spotify extends LIBRARIES.Skill {
         res.on("end", () => {
           result = JSON.parse(result);
           SELF.Settings.AccessToken = result.access_token;
-
-          const FILE_PATH = LIBRARIES.Path.join(__dirname, "/settings.json");
-
-          const CURRENT = JSON.parse(LIBRARIES.FS.readFileSync(FILE_PATH, "utf8"));
-          CURRENT.Settings = this.Settings;
-          LIBRARIES.FS.writeFileSync(FILE_PATH, JSON.stringify(CURRENT), "utf8");
+          SELF.SaveSettings();
           if(_socket !== undefined){
             _socket.emit("set_spotify_token", result.access_token, _autoplay);
           }
