@@ -73,7 +73,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     const DIV = document.createElement("novaspotify");
     const ID = "spotify";
     DIV.setAttribute("id", ID);
-    document.getElementById("tab-dashboard").getElementsByClassName("row")[0].appendChild(DIV);
+    document.getElementById("home").getElementsByClassName("row")[0].appendChild(DIV);
 
     MAIN.Volume.Subscriptions.push(function(_volume){
         if(SpotifyPlayer !== null){
@@ -136,7 +136,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
         // Playback status updates
         SpotifyPlayer.addListener('player_state_changed', state => {
-            console.log("player_state_changed", state);
             SpotifyApp.$children[0].initialised = true;
             SpotifyApp.$children[0].playing = !state.paused;
             SpotifyApp.$children[0].img = state.track_window.current_track.album.images[0].url;
