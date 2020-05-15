@@ -36,44 +36,44 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         },
         template: ''+
             '<div class="col col-12 col-sm-10 col-md-8 col-lg-6">'+
-            '<div class="spotify">'+
-            '<div class="wallpaper"><div :style="{ backgroundImage: \'url(\' + wallpaper + \')\' }"></div></div>'+
-            '<div class="img" :style="{ backgroundImage: \'url(\' + img + \')\' }"></div>'+
-            '<div class="controls">'+
-            '<div :title="name" class="name">{{name}}</div>'+
-            '<div :title="artists" class="artist">{{artists}}</div>'+
-            //'<input type="range" min="0" max="100">'+
-            '<button v-show="!initialised" @click="power">'+
-            '<i class="fas fa-power-off"></i>'+
-            '</button>'+
-            '<table v-show="initialised">'+
-            '<tbody>'+
-            '<tr>'+
-            '<td>'+
-            '<button @click="previous">'+
-            '<i class="fas fa-step-backward"></i>'+
-            '</button>'+
-            '</td>'+
-            '<td>'+
-            '<button @click="toggle">'+
-            '<div v-show="!playing">'+
-            '<i class="fas fa-play"></i>'+
-            '</div>'+
-            '<div v-show="playing">'+
-            '<i class="fas fa-pause"></i>'+
-            '</div>'+
-            '</button>'+
-            '</td>'+
-            '<td>'+
-            '<button @click="next">'+
-            '<i class="fas fa-step-forward"></i>'+
-            '</button>'+
-            '</td>'+
-            '</tr>'+
-            '</tbody>'+
-            '</table>'+
-            '</div>'+
-            '</div>'+
+                '<div class="spotify">'+
+                    '<div class="wallpaper"><div :style="{ backgroundImage: \'url(\' + wallpaper + \')\' }"></div></div>'+
+                    '<div class="img" :style="{ backgroundImage: \'url(\' + img + \')\' }"></div>'+
+                    '<div class="controls">'+
+                    '<div :title="name" v-if="initialised" class="name">{{name}}</div>'+
+                    '<div :title="artists" v-if="initialised" class="artist">{{artists}}</div>'+
+                    //'<input type="range" min="0" max="100">'+
+                    '<button v-show="!initialised" @click="power">'+
+                        '<i class="fas fa-power-off"></i>'+
+                    '</button>'+
+                    '<table v-show="initialised">'+
+                        '<tbody>'+
+                            '<tr>'+
+                                '<td>'+
+                                    '<button @click="previous">'+
+                                        '<i class="fas fa-step-backward"></i>'+
+                                    '</button>'+
+                                '</td>'+
+                                '<td>'+
+                                    '<button @click="toggle">'+
+                                        '<div v-show="!playing">'+
+                                            '<i class="fas fa-play"></i>'+
+                                        '</div>'+
+                                        '<div v-show="playing">'+
+                                            '<i class="fas fa-pause"></i>'+
+                                        '</div>'+
+                                    '</button>'+
+                                '</td>'+
+                                '<td>'+
+                                    '<button @click="next">'+
+                                        '<i class="fas fa-step-forward"></i>'+
+                                    '</button>'+
+                                '</td>'+
+                            '</tr>'+
+                        '</tbody>'+
+                    '</table>'+
+                    '</div>'+
+                '</div>'+
             '</div>'
     });
 
