@@ -143,21 +143,26 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
         // Playback status updates
         SpotifyPlayer.addListener('player_state_changed', state => {
-            SpotifyApp.$children[0].initialised = true;
-            SpotifyApp.$children[0].playing = !state.paused;
-            SpotifyApp.$children[0].img = state.track_window.current_track.album.images[0].url;
-            SpotifyApp.$children[0].wallpaper = state.track_window.current_track.album.images[0].url;
-            SpotifyApp.$children[0].name = state.track_window.current_track.name;
-            SpotifyApp.$children[0].artists = state.track_window.current_track.artists.map(function(x){
-                return x.name;
-            }).join(", ");
+            if(state !== null){
+                SpotifyApp.$children[0].initialised = true;
+                SpotifyApp.$children[0].playing = !state.paused;
+                SpotifyApp.$children[0].img = state.track_window.current_track.album.images[0].url;
+                SpotifyApp.$children[0].wallpaper = state.track_window.current_track.album.images[0].url;
+                SpotifyApp.$children[0].name = state.track_window.current_track.name;
+                SpotifyApp.$children[0].artists = state.track_window.current_track.artists.map(function(x){
+                    return x.name;
+                }).join(", ");
 
-            if(SpotifyApp.$children[0].autoplay === true && state.paused === true){
-                SpotifyApp.$children[0].autoplay = false;
+                if(SpotifyApp.$children[0].autoplay === true && state.paused === true){
+                    SpotifyApp.$children[0].autoplay = false;
 
-                setTimeout(function(){
-                    SpotifyPlayer.resume();
-                }, 1000);
+                    setTimeout(function(){
+                        SpotifyPlayer.resume();
+                    }, 1000);
+                }
+            }
+            else{
+                SpotifyApp.$children[0].initialised = false;
             }
         });
 
