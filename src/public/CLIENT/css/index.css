@@ -1,0 +1,93 @@
+html > body .spotify {
+  background-color: #333;
+  height: 148px;
+  border-radius: 0.25rem;
+  padding: 15px 15px 15px 118px;
+  position: relative;
+  margin-left: 15px;
+}
+html > body .spotify > .wallpaper {
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+}
+html > body .spotify > .wallpaper > div {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  filter: blur(10px);
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.25s ease;
+  transition-delay: 0s;
+  opacity: 0.5;
+}
+html > body .spotify > .img {
+  height: 118px;
+  width: 118px;
+  position: absolute;
+  background-color: #333;
+  top: 50%;
+  left: -15px;
+  transform: translateY(-50%);
+  border-radius: 0.25rem;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.25s ease;
+  transition-delay: 0s;
+}
+html > body .spotify > .controls {
+  position: relative;
+  color: white;
+  text-align: center;
+}
+html > body .spotify > .controls > button {
+  height: 60px;
+  width: 60px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  color: black;
+  font-size: 30px;
+  margin-top: 28px;
+}
+html > body .spotify > .controls > button:focus {
+  outline: none;
+}
+html > body .spotify > .controls > .name, html > body .spotify > .controls > .artist {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+html > body .spotify > .controls > .name {
+  font-size: 20px;
+  font-weight: bold;
+}
+html > body .spotify > .controls > .artist {
+  opacity: 0.8;
+  margin-bottom: 13px;
+}
+html > body .spotify > .controls > table {
+  margin-left: auto;
+  margin-right: auto;
+}
+html > body .spotify > .controls > table > tbody > tr > td > button {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: none;
+}
+html > body .spotify > .controls > table > tbody > tr > td > button:focus {
+  outline: none;
+}
+html > body .spotify > .controls > table > tbody > tr > td:first-child > button, html > body .spotify > .controls > table > tbody > tr > td:last-child > button {
+  color: white;
+  background-color: transparent;
+}
+
+/*# sourceMappingURL=index.css.map */
