@@ -7,7 +7,7 @@
 This skill will allow your NOVA assistant to play you some Spotify music.
 <br><br>
 
-<img src="https://github.com/HeyHeyChicken/NOVA-Blank-Skill/blob/master/resources/github-screenshot.jpg" alt="NOVA" width="800">
+<img src="https://github.com/HeyHeyChicken/NOVA-Spotify/blob/master/resources/github-screenshot.jpg" alt="NOVA" width="800">
 </div>
 
 <br>
