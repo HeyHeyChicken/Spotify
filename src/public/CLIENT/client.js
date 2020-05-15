@@ -12,6 +12,9 @@ class Client {
             socket.on("set_spotify_device", function(_name){
                 SELF.Main.IOClient.emit("set_spotify_device", _name);
             });
+            socket.on("set_spotify_token", function(_code){
+                SELF.Main.IOClient.emit("set_spotify_token", _code);
+            });
         });
 
         // Sockets from server

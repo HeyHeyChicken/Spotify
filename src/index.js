@@ -36,34 +36,33 @@ class Spotify extends LIBRARIES.Skill {
       socket.on("set_spotify_device", function(_name) {
         SELF.SetDevice(_name, socket);
       });
+      socket.on("set_spotify_token", function(_code) {
+        SELF.SetCode(_code, socket);
+      });
+
     });
 
-    const PAGE = "spotify_set_code";
     this.Main.Express.use("/Spotify", LIBRARIES.Express.static(LIBRARIES.Path.join(__dirname, "/public")));
-    this.Main.Express.get("/" + PAGE, function(req, res){
-      res.status(200).send("Good !<br/>1) You can close this tab.<br/>2) You can click to the power button again.");
-      SELF.SetCode(req.query.code);
-    });
   }
 
   /* #################################################################################### */
   /* ### FUNCTIONS ###################################################################### */
   /* #################################################################################### */
 
-  SetCode(_code){
+  SetCode(_code, _socket){
     this.Settings.Code = _code
     this.SaveSettings();
 
-    this.GetTokensFromCode();
+    this.GetTokensFromCode(_socket);
   }
 
-  GetTokensFromCode(){
+  GetTokensFromCode(_socket){
     const SELF = this;
 
     const BODY = LIBRARIES.QueryString.stringify({
       "grant_type": "authorization_code",
       "code": this.Settings.Code,
-      "redirect_uri": "http://localhost:8080/spotify_set_code",
+      "redirect_uri": "http://localhost:80/index",
       "client_id": this.Settings.AppPublicID,
       "client_secret": this.Settings.AppSecretID
     });
@@ -87,10 +86,17 @@ class Spotify extends LIBRARIES.Skill {
       })
       res.on("end", () => {
         result = JSON.parse(result);
-        SELF.Settings.AccessToken = result.access_token;
-        SELF.Settings.RefreshToken = result.refresh_token;
+        if(result.access_token !== undefined){
+          SELF.Settings.AccessToken = result.access_token;
+        }
+        if(result.refresh_token !== undefined){
+          SELF.Settings.RefreshToken = result.refresh_token;
+        }
         SELF.Settings.Code = null;
         SELF.SaveSettings();
+        if(_socket !== undefined){
+          _socket.emit("set_spotify_token", result.access_token, false);
+        }
       });
     })
 
@@ -106,13 +112,12 @@ class Spotify extends LIBRARIES.Skill {
     const SELF = this;
 
     if(this.Settings.Code === null && (this.Settings.RefreshToken === null || this.Settings.RefreshToken === undefined)) {
-      const PAGE = "spotify_set_code";
-
       // user-read-playback-state Endpoint
       const scopes = encodeURIComponent("ugc-image-upload user-follow-read user-follow-modify user-read-recently-played user-top-read user-read-playback-position user-library-read user-library-modify user-read-playback-state user-read-currently-playing user-modify-playback-state playlist-read-collaborative playlist-modify-private playlist-modify-public playlist-read-private streaming app-remote-control user-read-email user-read-private");
-      const redirect = encodeURIComponent("http://localhost:8080/" + PAGE);
+      const redirect = encodeURIComponent("http://localhost:80/index");
+      console.log(redirect);
       if(_socket !== undefined){
-        _socket.emit("open", "https://accounts.spotify.com/authorize?response_type=code&client_id=" + this.Settings.AppPublicID + "&scope=" + scopes + "&redirect_uri=" + redirect);
+        _socket.emit("open", "https://accounts.spotify.com/authorize?response_type=code&client_id=" + this.Settings.AppPublicID + "&scope=" + scopes + "&redirect_uri=" + redirect, false);
       }
     }
     else{
