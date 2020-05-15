@@ -1,0 +1,1 @@
+Here you can add screenshots. They will be visible in the server skill's tab.

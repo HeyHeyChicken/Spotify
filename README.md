@@ -1,10 +1,13 @@
 <div align="center">
 <a href="//nova-assistant.com" rel="nofollow">
-<img src="https://github.com/HeyHeyChicken/NOVA-Spotify/blob/master/resources/nova-logo.svg" alt="NOVA" width="300">
+<img src="https://github.com/HeyHeyChicken/NOVA-Spotify/blob/master/resources/github-logo.svg" alt="NOVA" width="300">
 </a>
 
 **NOVA - Spotify** is a skill for your [NOVA](//github.com/HeyHeyChicken/NOVA) assistant.<br>
 This skill will allow your NOVA assistant to play you some Spotify music.
+<br><br>
+
+<img src="https://github.com/HeyHeyChicken/NOVA-Blank-Skill/blob/master/resources/github-screenshot.jpg" alt="NOVA" width="800">
 </div>
 
 <br>
