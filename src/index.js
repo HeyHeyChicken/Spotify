@@ -115,7 +115,6 @@ class Spotify extends LIBRARIES.Skill {
       // user-read-playback-state Endpoint
       const scopes = encodeURIComponent("ugc-image-upload user-follow-read user-follow-modify user-read-recently-played user-top-read user-read-playback-position user-library-read user-library-modify user-read-playback-state user-read-currently-playing user-modify-playback-state playlist-read-collaborative playlist-modify-private playlist-modify-public playlist-read-private streaming app-remote-control user-read-email user-read-private");
       const redirect = encodeURIComponent("http://localhost:80/index");
-      console.log(redirect);
       if(_socket !== undefined){
         _socket.emit("open", "https://accounts.spotify.com/authorize?response_type=code&client_id=" + this.Settings.AppPublicID + "&scope=" + scopes + "&redirect_uri=" + redirect, false);
       }
