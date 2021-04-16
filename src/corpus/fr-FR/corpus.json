@@ -1,5 +1,5 @@
 {
-  "name": "Amberdata",
+  "name": "Spotify",
   "data": [
     {
       "intent": "Spotify.music.play",
